@@ -1,7 +1,7 @@
 from importlib.metadata import version as get_version
 
 
-__version__ = get_version("psm-demo")
+__version__ = get_version(__package__)
 
 
 def main() -> None:
