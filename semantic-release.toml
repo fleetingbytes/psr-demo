@@ -1,7 +1,7 @@
 [semantic_release]
 assets = []
 build_command = """
-    uv lock --verbose --upgrade-package "$PACKAGE_NAME
+    uv lock --verbose --upgrade-package "$PACKAGE_NAME"
     git add uv.lock
     uv build
 """
