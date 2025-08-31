@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.1.2 (2025-08-31)
+
+### Bug Fixes
+
+- Remove verbose output from build command
+  ([`57913a6`](https://github.com/fleetingbytes/psr-demo/commit/57913a6a16198ffb5463277e5a770de8fd618d60))
+
+
 ## v0.1.1 (2025-08-31)
 
 ### Bug Fixes
