@@ -5,4 +5,4 @@ __version__ = get_version(__package__)
 
 
 def main() -> None:
-    print(f"Hello from psm-demo {__version__}")
+    print(f"Hello from psr-demo {__version__}")
