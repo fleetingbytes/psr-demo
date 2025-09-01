@@ -95,7 +95,7 @@ jobs:
         if: ${{ steps.artifact-download.outcome == 'success' }}
         run: |
           uv pip uninstall my-package
-          uv pip install dist/python_semantic_release-*.whl
+          uv pip install dist/psr_demo-*.whl
 
       - name: Test | Run pytest
         run: uv run -- pytest -vv
