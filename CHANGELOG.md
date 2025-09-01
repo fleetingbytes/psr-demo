@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.2.1 (2025-09-01)
+
+### Bug Fixes
+
+- **ci**: Correct pypi publish link
+  ([`272a644`](https://github.com/fleetingbytes/psr-demo/commit/272a6445e2188b7b966c357a4c9507129e593442))
+
+
 ## v0.2.0 (2025-09-01)
 
 ### Bug Fixes
