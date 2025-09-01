@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.4.0 (2025-09-01)
+
+### Features
+
+- **ci**: Deploy both on TestPyPI and on PyPI
+  ([`94411c8`](https://github.com/fleetingbytes/psr-demo/commit/94411c863e686111e977f615d3b7d7aaa49fa082))
+
+
 ## v0.3.0 (2025-09-01)
 
 ### Features
