@@ -172,8 +172,7 @@ jobs:
   #    and it won't require reversing the release.
   deploy-test:
     name: Upload Release to TestPyPI
-    needs: 
-      - release
+    needs: release
     runs-on: ubuntu-latest
     if: ${{ needs.release.outputs.released == 'true' }}
 
@@ -204,9 +203,7 @@ jobs:
 
   deploy:
     name: Upload Release to PyPI
-    needs: 
-      - release
-      - deploy-test
+    needs: release
     runs-on: ubuntu-latest
     if: ${{ needs.release.outputs.released == 'true' }}
 
