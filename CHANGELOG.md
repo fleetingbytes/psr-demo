@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.1.3 (2025-09-01)
+
+### Documentation
+
+- Mention uv
+  ([`856971f`](https://github.com/fleetingbytes/psr-demo/commit/856971fac4a5eb8892e5ced4d9c14d5dfe21c595))
+
+
 ## v0.1.2 (2025-08-31)
 
 ### Bug Fixes
