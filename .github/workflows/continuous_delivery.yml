@@ -38,7 +38,7 @@ jobs:
         id: version
         env:
           GH_TOKEN: "none"
-        run: uv run semantic-release -v version --no-changelog --no-commit --no-tag
+        run: uv run -- semantic-release -c ./semantic-release.toml -v version --no-changelog --no-commit --no-tag
 
       - name: Upload | Distribution Artifacts
         if: ${{ steps.version.outputs.released == 'true' }}
@@ -98,7 +98,7 @@ jobs:
           uv pip install dist/python_semantic_release-*.whl
 
       - name: Test | Run pytest
-        run: uv run pytest -vv
+        run: uv run -- pytest -vv
 
 
   release:
@@ -154,8 +154,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           .github/workflows/verify-upstream-has-not-changed.sh
-          uv run semantic-release -v --strict version --skip-build
-          uv run semantic-release publish
+          uv run -- semantic-release -c ./semantic-release.toml -v --strict version --skip-build
+          uv run -- semantic-release -c ./semantic-release.toml publish
 
     outputs:
       released: ${{ steps.release.outputs.released }}
