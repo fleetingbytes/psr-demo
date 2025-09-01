@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -19,13 +20,13 @@ jobs:
       dist_artifacts_dir: dist
       lock_file_artifact: uv.lock
     steps:
-      - name: Setup | Checkout Repository at workflow sha
+      - name: Setup | Checkout Repository at Workflow SHA
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
 
-      - name: Setup | Force correct release branch on workflow sha
+      - name: Setup | Force Correct Release Branch on Workflow SHA
         run: git checkout -B ${{ github.ref_name }}
 
       - name: Setup | Install uv
@@ -34,7 +35,7 @@ jobs:
       - name: Setup | Install Python & Project dependencies
         run: uv sync --group build --group psr
 
-      - name: Build | Build next version artifacts
+      - name: Build | Build Next Version Artifacts
         id: version
         env:
           GH_TOKEN: "none"
@@ -68,6 +69,7 @@ jobs:
 
 
   test:
+    name: Test
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -98,10 +100,11 @@ jobs:
           uv pip install dist/psr_demo-*.whl
 
       - name: Test | Run pytest
-        run: uv run -- pytest -vv
+        run: uv run -- pytest --verbose
 
 
   release:
+    name: Release on GitHub
     runs-on: ubuntu-latest
     needs:
       - build
@@ -168,14 +171,14 @@ jobs:
     #    the least amount of token privilege
     # 2. Also, deployments can fail, and its better to have a separate job if you need to retry
     #    and it won't require reversing the release.
-    name: Upload release to TestPyPI
+    name: Upload Release to PyPI
     needs: release
     runs-on: ubuntu-latest
     if: ${{ needs.release.outputs.released == 'true' }}
 
     environment:
-      name: testpypi
-      url: https://test.pypi.org/p/psr-demo
+      name: pypi
+      url: https://pypi.org/p/psr-demo
 
     permissions:
       contents: read
@@ -190,10 +193,9 @@ jobs:
           path: ${{ needs.release.needs.build.outputs.distribution-artifacts }}
 
       # see https://docs.pypi.org/trusted-publishers/
-      - name: Publish package distributions to TestPyPI
+      - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist
           print-hash: true
           verbose: true
-          repository-url: https://test.pypi.org/legacy/
