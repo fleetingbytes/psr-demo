@@ -1,5 +1,6 @@
 # Python Semantic Release Demo
 
-Project showcasing a possible setup to utilize [python-semamtic-release][psm].
+Project showcasing a possible setup to utilize [python-semamtic-release][psm] with [uv][uv]
 
 [psm]: https://python-semantic-release.readthedocs.io/en/latest/index.html
+[uv]: https://docs.astral.sh/uv
