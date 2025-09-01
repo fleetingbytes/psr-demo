@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.2.3 (2025-09-01)
+
+### Bug Fixes
+
+- **ci**: Try to remove the dist parent directory from artifacts
+  ([`cb1dcf2`](https://github.com/fleetingbytes/psr-demo/commit/cb1dcf2fec0a97241759ab0b7c4a941917edbe7d))
+
+
 ## v0.2.2 (2025-09-01)
 
 ### Bug Fixes
