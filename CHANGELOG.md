@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.3.0 (2025-09-01)
+
+### Features
+
+- Publish on PyPI
+  ([`a83bf74`](https://github.com/fleetingbytes/psr-demo/commit/a83bf744bfdb329c2a583b0342768407596f5b8b))
+
+
 ## v0.2.3 (2025-09-01)
 
 ### Bug Fixes
