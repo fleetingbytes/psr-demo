@@ -166,13 +166,47 @@ jobs:
       new-release-tag: ${{ steps.release.outputs.tag }}
 
 
+  # 1. Separate out the deploy step from the publish step to run each step at
+  #    the least amount of token privilege
+  # 2. Also, deployments can fail, and its better to have a separate job if you need to retry
+  #    and it won't require reversing the release.
+  deploy-test:
+    name: Upload Release to TestPyPI
+    needs: 
+      - release
+    runs-on: ubuntu-latest
+    if: ${{ needs.release.outputs.released == 'true' }}
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/psr-demo
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Setup | Download Build Artifacts
+        uses: actions/download-artifact@v4
+        id: artifact-download
+        with:
+          name: ${{ needs.release.needs.build.outputs.distribution-artifacts }}
+          path: ${{ needs.release.needs.build.outputs.distribution-artifacts }}
+
+      # see https://docs.pypi.org/trusted-publishers/
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
+          print-hash: true
+          verbose: true
+          repository-url: https://test.pypi.org/legacy/
+
   deploy:
-    # 1. Separate out the deploy step from the publish step to run each step at
-    #    the least amount of token privilege
-    # 2. Also, deployments can fail, and its better to have a separate job if you need to retry
-    #    and it won't require reversing the release.
     name: Upload Release to PyPI
-    needs: release
+    needs: 
+      - release
+      - deploy-test
     runs-on: ubuntu-latest
     if: ${{ needs.release.outputs.released == 'true' }}
 
