@@ -2,6 +2,25 @@
 
 <!-- version list -->
 
+## v1.0.0 (2025-09-01)
+
+### Bug Fixes
+
+- Add uv dependency to build group, update psm build command
+  ([`b233de5`](https://github.com/fleetingbytes/psr-demo/commit/b233de5436258d79e5300014ae90d06a0bd961e4))
+
+### Continuous Integration
+
+- Add a CD pipeline, set to publish on TestPyPI
+  ([`955821e`](https://github.com/fleetingbytes/psr-demo/commit/955821e5d77df3bc3f41e91d72ac921b8a37ac51))
+
+- Correct branch name
+  ([`6eacb32`](https://github.com/fleetingbytes/psr-demo/commit/6eacb321b271f45e30d2650acbd6196e682710d2))
+
+- Make script executable
+  ([`8c7c753`](https://github.com/fleetingbytes/psr-demo/commit/8c7c753dafcf8105388411d35d7c76f7c900e94c))
+
+
 ## v0.1.3 (2025-09-01)
 
 ### Documentation
