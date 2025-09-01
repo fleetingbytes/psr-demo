@@ -2,6 +2,50 @@
 
 <!-- version list -->
 
+## v0.2.0 (2025-09-01)
+
+### Bug Fixes
+
+- Add uv dependency to build group, update psm build command
+  ([`b233de5`](https://github.com/fleetingbytes/psr-demo/commit/b233de5436258d79e5300014ae90d06a0bd961e4))
+
+### Continuous Integration
+
+- Add --group psr to uv sync
+  ([`abb93eb`](https://github.com/fleetingbytes/psr-demo/commit/abb93eb47434f693a22f639a17323671f068f15f))
+
+- Add a CD pipeline, set to publish on TestPyPI
+  ([`955821e`](https://github.com/fleetingbytes/psr-demo/commit/955821e5d77df3bc3f41e91d72ac921b8a37ac51))
+
+- Correct branch name
+  ([`6eacb32`](https://github.com/fleetingbytes/psr-demo/commit/6eacb321b271f45e30d2650acbd6196e682710d2))
+
+- Correct distribution artifact name
+  ([`ec9de11`](https://github.com/fleetingbytes/psr-demo/commit/ec9de11aef6d21cc4f79f9103d7a99a9baf6e3c9))
+
+- Make script executable
+  ([`8c7c753`](https://github.com/fleetingbytes/psr-demo/commit/8c7c753dafcf8105388411d35d7c76f7c900e94c))
+
+- Set path to project the way it is in the GitHub runner
+  ([`0deb680`](https://github.com/fleetingbytes/psr-demo/commit/0deb680dad61998cb3c8826fa67186e01412a5fc))
+
+- Use my semantic-release.toml
+  ([`1ba5d08`](https://github.com/fleetingbytes/psr-demo/commit/1ba5d0816d6860f2c471019192a67f214fb97d7f))
+
+- Use uv in CI
+  ([`b5d29dd`](https://github.com/fleetingbytes/psr-demo/commit/b5d29dd6c7570e7ab21f7685f8949933380e34dd))
+
+### Features
+
+- Better readme
+  ([`0deb4ae`](https://github.com/fleetingbytes/psr-demo/commit/0deb4ae74f51b670613fa0deddaa3d956e62e707))
+
+### Testing
+
+- Create a fake test
+  ([`5f45c6d`](https://github.com/fleetingbytes/psr-demo/commit/5f45c6dbbd1adbf19adf0e3f6f4f180983c0faee))
+
+
 ## v1.0.0 (2025-09-01)
 
 ### Bug Fixes
