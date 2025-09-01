@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.2.2 (2025-09-01)
+
+### Bug Fixes
+
+- **ci**: Try other path for Downloading build artifacts
+  ([`177c8e4`](https://github.com/fleetingbytes/psr-demo/commit/177c8e470cf82c3696c247f8c995eb7da11d964b))
+
+
 ## v0.2.1 (2025-09-01)
 
 ### Bug Fixes
