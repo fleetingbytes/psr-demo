@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.4.2 (2025-09-03)
+
+### Bug Fixes
+
+- **ci**: Correct uninstall command
+  ([`e08bee9`](https://github.com/fleetingbytes/psr-demo/commit/e08bee9a7e65505ae52187eadf6a9e2c3a039474))
+
+
 ## v0.4.1 (2025-09-03)
 
 ### Bug Fixes
