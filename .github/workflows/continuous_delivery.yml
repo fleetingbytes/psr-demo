@@ -193,7 +193,7 @@ jobs:
 
   # 1. Separate out the deploy step from the publish step to run each step at
   #    the least amount of token privilege
-  # 2. Also, deployments can fail, and its better to have a separate job if you need to retry
+  # 2. Also, deployments can fail, and it is better to have a separate job if you need to retry
   #    and it won't require reversing the release.
   deploy-test:
     name: Release on TestPyPI
