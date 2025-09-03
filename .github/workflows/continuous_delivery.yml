@@ -29,10 +29,13 @@ jobs:
       - name: Setup | Force Correct Release Branch on Workflow SHA
         run: git checkout -B ${{ github.ref_name }}
 
+      - name: Setup | Install Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+
       - name: Setup | Install uv
         uses: astral-sh/setup-uv@4959332f0f014c5280e7eac8b70c90cb574c9f9b  # v6.6.0
 
-      - name: Setup | Install Python & Project dependencies
+      - name: Setup | Install Project Dependencies for Versioning
         run: uv sync --group psr
 
       - name: Build | Build Next Version Artifacts
@@ -70,7 +73,7 @@ jobs:
 
 
   test-e2e:
-    name: Test End-to-End
+    name: End-to-End Test
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -88,10 +91,13 @@ jobs:
           name: ${{ needs.build.outputs.distribution-artifacts-name }}
           path: ${{ needs.build.outputs.distribution-artifacts-dir }}
 
+      - name: Setup | Install Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+
       - name: Setup | Install uv
         uses: astral-sh/setup-uv@4959332f0f014c5280e7eac8b70c90cb574c9f9b  # v6.6.0
 
-      - name: Setup | Install Python and Project Dependencies
+      - name: Setup | Install Project Dependencies for Test
         run: uv sync --group test
 
       - name: Setup | Install distribution artifact
@@ -130,10 +136,13 @@ jobs:
       - name: Setup | Force release branch to be at workflow sha
         run: git reset --hard ${{ github.sha }}
 
+      - name: Setup | Install Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+
       - name: Setup | Install uv
         uses: astral-sh/setup-uv@4959332f0f014c5280e7eac8b70c90cb574c9f9b  # v6.6.0
 
-      - name: Setup | Install Python & Project dependencies
+      - name: Setup | Install Project dependencies
         run: uv sync --group psr
 
       - name: Setup | Download Build Artifacts
