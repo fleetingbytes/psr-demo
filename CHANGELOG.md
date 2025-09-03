@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v0.4.3 (2025-09-03)
+
+### Bug Fixes
+
+- **ci**: Try ci without dependency group 'build'
+  ([`3a9a93f`](https://github.com/fleetingbytes/psr-demo/commit/3a9a93fd157217dc9449bb2153725e0b6b32e27e))
+
+### Continuous Integration
+
+- Rename test job
+  ([`a341d25`](https://github.com/fleetingbytes/psr-demo/commit/a341d2593bcb48d49a8f79dda990dece1aecdf9d))
+
+
 ## v0.4.2 (2025-09-03)
 
 ### Bug Fixes
