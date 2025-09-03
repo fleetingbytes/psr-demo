@@ -2,6 +2,22 @@
 
 <!-- version list -->
 
+## v0.4.1 (2025-09-03)
+
+### Bug Fixes
+
+- **ci**: Correct reference for lock-file-artifact
+  ([`f11705b`](https://github.com/fleetingbytes/psr-demo/commit/f11705b40aceb81d9248ef4c54c9945711a78ae3))
+
+- **ci**: Use variables in upload and download artifact names and paths
+  ([`f7fbad2`](https://github.com/fleetingbytes/psr-demo/commit/f7fbad2949164580995812e69b25028dae060461))
+
+### Continuous Integration
+
+- Small and insignificant change. Both deployments run in parallel
+  ([`c6f4efb`](https://github.com/fleetingbytes/psr-demo/commit/c6f4efb13059afa845da254389d81f6adf3ad880))
+
+
 ## v0.4.0 (2025-09-01)
 
 ### Features
