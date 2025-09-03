@@ -64,7 +64,8 @@ jobs:
       new-release-version: ${{ steps.version.outputs.version }}
       new-release-tag: ${{ steps.version.outputs.tag }}
       new-release-is-prerelease: ${{ steps.version.outputs.is_prerelease }}
-      distribution-artifacts: ${{ env.dist_artifacts_name }}
+      distribution-artifacts-name: ${{ env.dist_artifacts_name }}
+      distribution-artifacts-dir: ${{ env.dist_artifacts_dir }}
       lock-file-artifact: ${{ env.lock_file_artifact }}
 
 
@@ -84,8 +85,8 @@ jobs:
         if: ${{ needs.build.outputs.new-release-detected == 'true' }}
         id: artifact-download
         with:
-          name: ${{ needs.build.outputs.distribution-artifacts }}
-          path: ./dist
+          name: ${{ needs.build.outputs.distribution-artifacts-name }}
+          path: ${{ needs.build.outputs.distribution-artifacts-dir }}
 
       - name: Setup | Install uv
         uses: astral-sh/setup-uv@4959332f0f014c5280e7eac8b70c90cb574c9f9b  # v6.6.0
@@ -139,13 +140,13 @@ jobs:
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0  # v5.0.0
         id: artifact-download
         with:
-          name: ${{ needs.build.outputs.distribution-artifacts }}
-          path: dist
+          name: ${{ needs.build.outputs.distribution-artifacts-name }}
+          path: ${{ needs.build.outputs.distribution-artifacts-dir }}
 
       - name: Setup | Download Lock File Artifact
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0  # v5.0.0
         with:
-          name: ${{ needs.build.outputs.lock-file-artifact }}
+          name: ${{ needs.build.outputs.lock-file-artifact-name }}
 
       - name: Setup | Stage Lock File for Version Commit
         run: git add uv.lock
@@ -189,8 +190,8 @@ jobs:
         uses: actions/download-artifact@v4
         id: artifact-download
         with:
-          name: ${{ needs.release.needs.build.outputs.distribution-artifacts }}
-          path: ${{ needs.release.needs.build.outputs.distribution-artifacts }}
+          name: ${{ needs.release.needs.build.outputs.distribution-artifacts-name }}
+          path: ${{ needs.release.needs.build.outputs.distribution-artifacts-dir }}
 
       # see https://docs.pypi.org/trusted-publishers/
       - name: Publish package distributions to PyPI
@@ -220,8 +221,8 @@ jobs:
         uses: actions/download-artifact@v4
         id: artifact-download
         with:
-          name: ${{ needs.release.needs.build.outputs.distribution-artifacts }}
-          path: ${{ needs.release.needs.build.outputs.distribution-artifacts }}
+          name: ${{ needs.release.needs.build.outputs.distribution-artifacts-name }}
+          path: ${{ needs.release.needs.build.outputs.distribution-artifacts-dir }}
 
       # see https://docs.pypi.org/trusted-publishers/
       - name: Publish package distributions to PyPI
