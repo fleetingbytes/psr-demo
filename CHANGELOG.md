@@ -2,6 +2,24 @@
 
 <!-- version list -->
 
+## v0.4.7 (2025-09-03)
+
+### Code Style
+
+- **ci**: Title case
+  ([`da2b1cc`](https://github.com/fleetingbytes/psr-demo/commit/da2b1ccb3ff92b61072a784ca95e3fd6ae790d7f))
+
+### Continuous Integration
+
+- Rename jobs
+  ([`feb4a83`](https://github.com/fleetingbytes/psr-demo/commit/feb4a838cb6d481b34b2ca58b64163371f3bdc70))
+
+### Documentation
+
+- Correct grammar in comment
+  ([`803a0fd`](https://github.com/fleetingbytes/psr-demo/commit/803a0fd6ecb43cbc3b9855640c60393cf0fc1f20))
+
+
 ## v0.4.6 (2025-09-03)
 
 ### Bug Fixes
