@@ -196,7 +196,7 @@ jobs:
   # 2. Also, deployments can fail, and its better to have a separate job if you need to retry
   #    and it won't require reversing the release.
   deploy-test:
-    name: Upload Release to TestPyPI
+    name: Release on TestPyPI
     needs: release
     runs-on: ubuntu-latest
     if: ${{ needs.release.outputs.released == 'true' }}
@@ -227,7 +227,7 @@ jobs:
           repository-url: https://test.pypi.org/legacy/
 
   deploy:
-    name: Upload Release to PyPI
+    name: Release on PyPI
     needs: release
     runs-on: ubuntu-latest
     if: ${{ needs.release.outputs.released == 'true' }}
