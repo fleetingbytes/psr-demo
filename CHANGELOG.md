@@ -2,6 +2,17 @@
 
 <!-- version list -->
 
+## v0.4.6 (2025-09-03)
+
+### Bug Fixes
+
+- **ci**: Try not to use managed python
+  ([`1e7cb83`](https://github.com/fleetingbytes/psr-demo/commit/1e7cb83c7b14b14e250ac7704508ada28c45d306))
+
+- **ci**: Use .python-version to determine Python version, rather than pyproject.toml
+  ([`62ddeb9`](https://github.com/fleetingbytes/psr-demo/commit/62ddeb9cc675ffc2cbf03f674325753d5bf23f2a))
+
+
 ## v0.4.5 (2025-09-03)
 
 ### Bug Fixes
