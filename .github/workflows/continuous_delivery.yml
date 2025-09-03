@@ -146,7 +146,7 @@ jobs:
       - name: Setup | Download Lock File Artifact
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0  # v5.0.0
         with:
-          name: ${{ needs.build.outputs.lock-file-artifact-name }}
+          name: ${{ needs.build.outputs.lock-file-artifact }}
 
       - name: Setup | Stage Lock File for Version Commit
         run: git add uv.lock
