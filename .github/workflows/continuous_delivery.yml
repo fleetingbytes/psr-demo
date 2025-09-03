@@ -97,7 +97,7 @@ jobs:
       - name: Setup | Install distribution artifact
         if: ${{ steps.artifact-download.outcome == 'success' }}
         run: |
-          uv pip uninstall my-package
+          uv pip uninstall psr-demo
           uv pip install dist/psr_demo-*.whl
 
       - name: Test | Run pytest
