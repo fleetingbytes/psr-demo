@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v0.4.4 (2025-09-03)
+
+### Bug Fixes
+
+- Remove dependency group 'build'
+  ([`d850ec9`](https://github.com/fleetingbytes/psr-demo/commit/d850ec9f41ecbee61bb80b8d6fb9ecb9b4135158))
+
+### Continuous Integration
+
+- Use separate python-setup step before installing uv
+  ([`2c54378`](https://github.com/fleetingbytes/psr-demo/commit/2c5437854ddb21c113e72e5a20c1d4443d1047bf))
+
+
 ## v0.4.3 (2025-09-03)
 
 ### Bug Fixes
