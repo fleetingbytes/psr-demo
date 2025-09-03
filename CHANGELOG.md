@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.4.5 (2025-09-03)
+
+### Bug Fixes
+
+- **ci**: Specify python version for python-setup
+  ([`6b62baf`](https://github.com/fleetingbytes/psr-demo/commit/6b62bafd70f586f3ce68d32a6b4004cbaaafd4b9))
+
+
 ## v0.4.4 (2025-09-03)
 
 ### Bug Fixes
