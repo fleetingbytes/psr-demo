@@ -2,6 +2,34 @@
 
 <!-- version list -->
 
+## v0.8.0 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Correct dependency
+  ([`2b3d352`](https://github.com/fleetingbytes/psr-demo/commit/2b3d35296ab01bff3955bc517d0d83a8a9352be9))
+
+- **ci**: Correct file location
+  ([`da22048`](https://github.com/fleetingbytes/psr-demo/commit/da22048f25bfec37d3097bd6a92bf9876485e7fa))
+
+- **ci**: Correct variable name
+  ([`5183cac`](https://github.com/fleetingbytes/psr-demo/commit/5183cacfdd96b63acdd4200137b0171199b8c2a3))
+
+- **ci**: Pass write permission to reusable workflow
+  ([`ddd3b75`](https://github.com/fleetingbytes/psr-demo/commit/ddd3b75dbf87bdc3885c6479b35f17799c60b30f))
+
+- **ci**: Syntax
+  ([`82662d8`](https://github.com/fleetingbytes/psr-demo/commit/82662d8ff176a141e7a11e3e25fd2b82e46aaa17))
+
+- **ci**: Use a job for setting variables
+  ([`97947e3`](https://github.com/fleetingbytes/psr-demo/commit/97947e3f82964f8917e60b59df7dde16ae3d932f))
+
+### Features
+
+- **ci**: Make release job a reusable workflow
+  ([`d1d7c8b`](https://github.com/fleetingbytes/psr-demo/commit/d1d7c8b035b686d6ad8ecc9d889408a9932c7185))
+
+
 ## v0.7.0 (2025-09-04)
 
 ### Bug Fixes
