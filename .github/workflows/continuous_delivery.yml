@@ -37,11 +37,17 @@ jobs:
       - name: Setup | Install uv
         uses: astral-sh/setup-uv@4959332f0f014c5280e7eac8b70c90cb574c9f9b  # v6.6.0
 
-      - name: Setup | Install Project Dependencies for Versioning
+      - name: Setup | Install python-semantic-versioning
         env:
           UV_LOCKED: true
           UV_NO_MANAGED_PYTHON: true
-        run: uv sync --group psr
+        run: uv tool install python-semantic-release
+
+      - name: Setup | Install Project
+        env:
+          UV_LOCKED: true
+          UV_NO_MANAGED_PYTHON: true
+        run: uv sync
 
       - name: Build | Build Next Version Artifacts
         id: version
