@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.5.2 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Correct step name
+  ([`bfbcfca`](https://github.com/fleetingbytes/psr-demo/commit/bfbcfca7e14e7b69be003291e262af47195e804b))
+
+
 ## v0.5.1 (2025-09-04)
 
 ### Bug Fixes
