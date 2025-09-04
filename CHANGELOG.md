@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.8.3 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Defined names for reusable workflows
+  ([`a161fd0`](https://github.com/fleetingbytes/psr-demo/commit/a161fd02909fc3f2827d38a8d7e9800f30b7d6dd))
+
+
 ## v0.8.2 (2025-09-04)
 
 ### Bug Fixes
