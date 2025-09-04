@@ -61,6 +61,8 @@ jobs:
       distribution-artifacts-dir: ${{ needs.build.outputs.distribution-artifacts-dir }}
       lock-file-artifact: ${{ needs.build.outputs.lock-file-artifact }}
     secrets: inherit
+    permissions:
+      contents: write
 
 
   # 1. Separate out the deploy step from the publish step to run each step at
