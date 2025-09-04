@@ -2,6 +2,27 @@
 
 <!-- version list -->
 
+## v0.6.0 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Correct reference
+  ([`2691ae3`](https://github.com/fleetingbytes/psr-demo/commit/2691ae39585f7668b6ec04b66f02043a9b6d683b))
+
+- **ci**: Remove incorrect dependency from reusable workflow
+  ([`5e6d981`](https://github.com/fleetingbytes/psr-demo/commit/5e6d981765be82b7bd9058578fb50b7a6e981aa1))
+
+### Documentation
+
+- Add project urls
+  ([`18a775b`](https://github.com/fleetingbytes/psr-demo/commit/18a775b14d57bab42c0c5b93cfbc3cd706d46e76))
+
+### Features
+
+- **ci**: Make e2e-test an reusable workflow
+  ([`599b866`](https://github.com/fleetingbytes/psr-demo/commit/599b8660f80a203b979f997b2342a7502e353f74))
+
+
 ## v0.5.2 (2025-09-04)
 
 ### Bug Fixes
