@@ -15,13 +15,20 @@ on:
         type: string
 
     outputs:
-      new-release-detected: ${{ jobs.build.outputs.new-release-detected }}
-      new-release-version: ${{ jobs.build.outputs.new-release-version }}
-      new-release-tag: ${{ jobs.build.outputs.new-release-tag }}
-      new-release-is-prerelease: ${{ jobs.build.outputs.new-release-is-prerelease }}
-      distribution-artifacts-name: ${{ inputs.distribution-artifacts-name }}
-      distribution-artifacts-dir: ${{ inputs.distribution-artifacts-dir }}
-      lock-file-artifact: ${{ inputs.lock_file_artifact }}
+      new-release-detected:
+        value: ${{ jobs.build.outputs.new-release-detected }}
+      new-release-version:
+        value: ${{ jobs.build.outputs.new-release-version }}
+      new-release-tag:
+        value: ${{ jobs.build.outputs.new-release-tag }}
+      new-release-is-prerelease:
+        value: ${{ jobs.build.outputs.new-release-is-prerelease }}
+      distribution-artifacts-name:
+        value: ${{ inputs.distribution-artifacts-name }}
+      distribution-artifacts-dir:
+        value: ${{ inputs.distribution-artifacts-dir }}
+      lock-file-artifact:
+        value: ${{ inputs.lock_file_artifact }}
 
 
 jobs:
