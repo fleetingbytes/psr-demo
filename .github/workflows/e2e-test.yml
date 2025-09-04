@@ -26,7 +26,6 @@ on:
 jobs:
   e2e-test:
     name: End-to-End Test
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Setup | Checkout Repository
