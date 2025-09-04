@@ -24,7 +24,6 @@ jobs:
         id: set-vars
         run: echo "::set-output name=semantic-release-config-file::${SEMANTIC_RELEASE_CONFIG_FILE}"
 
-jobs:
   build:
     name: Build
     needs: set-variables
