@@ -2,6 +2,22 @@
 
 <!-- version list -->
 
+## v0.7.0 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Correct lock-file-artifact output value
+  ([`8e3bd86`](https://github.com/fleetingbytes/psr-demo/commit/8e3bd8699a7992b698f550b0a583a8e005933144))
+
+- **ci**: Correct reusable workflow outputs
+  ([`1097374`](https://github.com/fleetingbytes/psr-demo/commit/1097374fdb554921499921fbcf6f1df0361aad6c))
+
+### Features
+
+- **ci**: Make build job a reusable workflow
+  ([`012a36a`](https://github.com/fleetingbytes/psr-demo/commit/012a36acb3c45e54954c03105b5f16fd29e5276b))
+
+
 ## v0.6.1 (2025-09-04)
 
 ### Bug Fixes
