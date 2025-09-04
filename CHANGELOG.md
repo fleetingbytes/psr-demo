@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.8.2 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Correct condition for publishing on pypi
+  ([`e02a34a`](https://github.com/fleetingbytes/psr-demo/commit/e02a34a90914a4f7bd902b0005fcda3b988b2868))
+
+
 ## v0.8.1 (2025-09-04)
 
 ### Bug Fixes
