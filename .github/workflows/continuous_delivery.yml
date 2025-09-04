@@ -84,11 +84,12 @@ jobs:
 
 
   test-e2e:
+    needs: build
     uses: ./.github/workflows/e2e-test.yml
     with:
-      new-release-detected: ${{ build.outputs.new-release-detected }}
-      artifacts-name: ${{ build.outputs.distribution-artifacts-name }}
-      artifacts-dir: ${{ build.outputs.distribution-artifacts-dir }}
+      new-release-detected: ${{ needs.build.outputs.new-release-detected }}
+      artifacts-name: ${{ needs.build.outputs.distribution-artifacts-name }}
+      artifacts-dir: ${{ needs.build.outputs.distribution-artifacts-dir }}
       package-name: "psr-demo"
       distribution-file-incipit: "psr_demo"
       test-dependency-group: "test"
