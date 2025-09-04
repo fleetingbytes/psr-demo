@@ -17,7 +17,7 @@ jobs:
     name: Build
     uses: ./.github/workflows/build.yml
     with:
-      semantic-release-config-file: ${{ env.SEMANTIC_RELEASE_CONFIG_PATH }}
+      semantic-release-config-file: ${{ env.SEMANTIC_RELEASE_CONFIG_FILE }}
       distribution-artifacts-name: "dist"
       distribution-artifacts-dir: "dist"
       lock-file-artifact: "uv.lock"
