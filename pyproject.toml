@@ -9,6 +9,13 @@ authors = [
 requires-python = ">=3.11"
 dependencies = []
 
+[project.urls]
+Homepage = "http://github.com/fleetingbytes/psr-demo"
+Documentation = "http://github.com/fleetingbytes/psr-demo/blob/master/README.md"
+Repository = "http://github.com/fleetingbytes/psr-demo.git"
+Issues = "http://github.com/fleetingbytes/psr-demo/issues"
+Changelog = "http://github.com/fleetingbytes/psr-demo/blob/master/CHANGELOG.md"
+
 [project.scripts]
 psr-demo = "psr_demo:main"
 
