@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.5.1 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Don't depend on project's dependency group 'psr' in the build job either
+  ([`bafa6b5`](https://github.com/fleetingbytes/psr-demo/commit/bafa6b55d7f19fa5810585d3486a538a637708f4))
+
+
 ## v0.5.0 (2025-09-04)
 
 ### Features
