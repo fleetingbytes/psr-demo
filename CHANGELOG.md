@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.6.1 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Correct condition for downloading distribution artifacts
+  ([`8db8fb4`](https://github.com/fleetingbytes/psr-demo/commit/8db8fb4c610d8c594b83dc483595722c0e220302))
+
+
 ## v0.6.0 (2025-09-04)
 
 ### Bug Fixes
