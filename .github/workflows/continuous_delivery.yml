@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Set Variables
         id: set-vars
-        run: echo "::set-output name=semantic-release-config-file::${SEMANTIC_RELEASE_CONFIG_FILE}"
+        run: echo "semantic-release-config-file=${SEMANTIC_RELEASE_CONFIG_FILE}" >> $GITHUB_OUTPUT
 
   build:
     name: Build
