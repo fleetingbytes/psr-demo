@@ -23,6 +23,7 @@ on:
         required: true
         type: string
 
+
 jobs:
   e2e-test:
     name: End-to-End Test
