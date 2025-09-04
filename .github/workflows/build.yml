@@ -28,7 +28,7 @@ on:
       distribution-artifacts-dir:
         value: ${{ inputs.distribution-artifacts-dir }}
       lock-file-artifact:
-        value: ${{ inputs.lock_file_artifact }}
+        value: ${{ inputs.lock-file-artifact }}
 
 
 jobs:
