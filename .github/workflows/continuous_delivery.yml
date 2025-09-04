@@ -12,12 +12,25 @@ permissions:
 env:
   SEMANTIC_RELEASE_CONFIG_FILE: "./semantic-release.toml"
 
+
+jobs:
+  variables:
+    name: Set Workflow Variables
+    runs-on: ubuntu-latest
+    outputs:
+      semantic-release-config-file: ${{ steps.set-vars.outputs.semantic-release-config-file }}
+    steps:
+      - name: Set Variables
+        id: set-vars
+        run: echo "::set-output name=semantic-release-config-file::${SEMANTIC_RELEASE_CONFIG_FILE}"
+
 jobs:
   build:
     name: Build
+    needs: set-variables
     uses: ./.github/workflows/build.yml
     with:
-      semantic-release-config-file: ${{ env.SEMANTIC_RELEASE_CONFIG_FILE }}
+      semantic-release-config-file: ${{ needs.variables.outputs.semantic-release-config-file }}
       distribution-artifacts-name: "dist"
       distribution-artifacts-dir: "dist"
       lock-file-artifact: "uv.lock"
@@ -38,12 +51,13 @@ jobs:
 
   release:
     needs:
+      - variables
       - build
       - test-e2e
     uses: ./.github/workflows/release.yml
     with:
       new-release-detected: ${{ needs.build.outputs.new-release-detected }}
-      semantic-release-config-file: ${{ env.SEMANTIC_RELEASE_CONFIG_FILE }}
+      semantic-release-config-file: ${{ needs.variables.outputs.semantic-release-config-file }}
       distribution-artifacts-name: ${{ needs.build.outputs.distribution-artifacts-name }}
       distribution-artifacts-dir: ${{ needs.build.outputs.distribution-artifacts-dir }}
       lock-file-artifact: ${{ needs.build.outputs.lock-file-artifact }}
