@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.5.0 (2025-09-04)
+
+### Features
+
+- **ci**: Do not depend on the project's dependency group 'psr'
+  ([`a9a0a9a`](https://github.com/fleetingbytes/psr-demo/commit/a9a0a9a41568456ddd2bdeff01c5b7982e69ad87))
+
+
 ## v0.4.7 (2025-09-03)
 
 ### Code Style
