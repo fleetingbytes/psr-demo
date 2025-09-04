@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.8.1 (2025-09-04)
+
+### Bug Fixes
+
+- **ci**: Use the current way to set GITHUB_OUTPUT
+  ([`0e9e632`](https://github.com/fleetingbytes/psr-demo/commit/0e9e63201f568dbcba67e612c7aab8d74f2fa6db))
+
+
 ## v0.8.0 (2025-09-04)
 
 ### Bug Fixes
