@@ -35,6 +35,7 @@ jobs:
       distribution-artifacts-name: ${{ steps.set-variables.outputs.distribution-artifacts-name }}
       distribution-artifacts-dir: ${{ steps.set-variables.outputs.distribution-artifacts-dir }}
       lock-file-artifact: ${{ steps.set-variables.outputs.lock-file-artifact }}
+      publish-data: ${{ steps.define-publish-data.outputs.data }}
     steps:
       - name: Setup | Set Variables for Reusable Workflows
         id: set-variables
@@ -47,6 +48,10 @@ jobs:
           echo "distribution-artifacts-name=${DISTRIBUTION_ARTIFACTS_NAME}" >> $GITHUB_OUTPUT
           echo "distribution-artifacts-dir=${DISTRIBUTION_ARTIFACTS_DIR}" >> $GITHUB_OUTPUT
           echo "lock-file-artifact=${LOCK_FILE_ARTIFACT}" >> $GITHUB_OUTPUT
+      - name: Setup | Define Publishing Matrix
+        id: define-publish-data
+        run: |
+          echo 'data=[{"registry":"TestPyPI","environment-name":"testpypi","hostname":"test.pypi.org","publish-api-url":"https://test.pypi.org/legacy/"},{"registry":"PyPI","environment-name":"pypi","hostname":"pypi.org","publish-api-url":"https://upload.pypi.org/legacy/"}]' >> $GITHUB_OUTPUT
 
 
   build:
@@ -94,17 +99,44 @@ jobs:
       contents: write
 
 
+  # PyPI does not support publishing from reusable workflows yet
+  # Subscribe to:
+  #  https://github.com/pypi/warehouse/issues/11096
+  #  https://github.com/pypa/gh-action-pypi-publish/issues/166
   publish:
-    name: Publish
     needs:
       - variables
       - release
-    uses: ./.github/workflows/publish.yml
-    with:
-      new-version-released: ${{ needs.release.outputs.new-version-released }}
-      package-name: ${{ needs.variables.outputs.package-name }}
-      distribution-artifacts-name: ${{ needs.variables.outputs.distribution-artifacts-name }}
-      distribution-artifacts-dir: ${{ needs.variables.outputs.distribution-artifacts-dir }}
+
+    strategy:
+      matrix:
+        publish-data: ${{ fromJSON(needs.variables.outputs.publish-data) }}
+
+    name: Publish on ${{ matrix.publish-data.registry }}
+    runs-on: ubuntu-latest
+
+    if: ${{ needs.release.outputs.new-version-released == 'true' }}
+
+    environment:
+      name: ${{ matrix.publish-data.environment-name }}
+      url: https://${{ matrix.publish-data.hostname }}/p/${{ inputs.package-name }}
+
     permissions:
       contents: read
       id-token: write
+
+    steps:
+      - name: Setup | Download Build Artifacts
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0  # v5.0.0
+        id: artifact-download
+        with:
+          name: ${{ inputs.distribution-artifacts-name }}
+          path: ${{ inputs.distribution-artifacts-dir }}
+
+      - name: Publish Package Distributions to ${{ matrix.publish-data.registry }}
+        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e  # v1.13.0
+        with:
+          packages-dir: ${{ inputs.distribution-artifacts-dir }}
+          print-hash: true
+          verbose: true
+          repository-url: ${{ matrix.publish-data.publish-api-url }}
