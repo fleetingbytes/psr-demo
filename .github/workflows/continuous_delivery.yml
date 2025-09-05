@@ -23,29 +23,57 @@ env:
 
 
 jobs:
+  variables:
+    name: Variables
+    runs-on: ubuntu-latest
+    outputs:
+      semantic-release-config-file: ${{ steps.set-variables.outputs.semantic-release-config-file }}
+      package-name: ${{ steps.set-variables.outputs.package-name }}
+      distribution-file-incipit: ${{ steps.set-variables.outputs.distribution-file-incipit }}
+      test-dependency-group: ${{ steps.set-variables.outputs.test-dependency-group }}
+      run-test-command: ${{ steps.set-variables.outputs.run-test-command }}
+      distribution-artifacts-name: ${{ steps.set-variables.outputs.distribution-artifacts-name }}
+      distribution-artifacts-dir: ${{ steps.set-variables.outputs.distribution-artifacts-dir }}
+      lock-file-artifact: ${{ steps.set-variables.outputs.lock-file-artifact }}
+    steps:
+      - name: Setup | Set Variables for Reusable Workflows
+        id: set-variables
+        run: |
+          echo "semantic-release-config-file=${SEMANTIC_RELEASE_CONFIG_FILE}" >> $GITHUB_OUTPUT
+          echo "package-name=${PACKAGE_NAME}" >> $GITHUB_OUTPUT
+          echo "distribution-file-incipit=${DISTRIBUTION_FILE_INCIPIT}" >> $GITHUB_OUTPUT
+          echo "test-dependency-group=${TEST_DEPENDENCY_GROUP}" >> $GITHUB_OUTPUT
+          echo "run-test-command=${RUN_TEST_COMMAND}" >> $GITHUB_OUTPUT
+          echo "distribution-artifacts-name=${DISTRIBUTION_ARTIFACTS_NAME}" >> $GITHUB_OUTPUT
+          echo "distribution-artifacts-dir=${DISTRIBUTION_ARTIFACTS_DIR}" >> $GITHUB_OUTPUT
+          echo "lock-file-artifact=${LOCK_FILE_ARTIFACT}" >> $GITHUB_OUTPUT
+
+
   build:
     name: Build
     needs: variables
     uses: ./.github/workflows/build.yml
     with:
-      semantic-release-config-file: ${{ env.SEMANTIC_RELEASE_CONFIG_FILE }}
-      distribution-artifacts-name: ${{ env.DISTRIBUTION_ARTIFACTS_NAME }}
-      distribution-artifacts-dir: ${{ env.DISTRIBUTION_ARTIFACTS_DIR }}
-      lock-file-artifact: ${{ env.LOCK_FILE_ARTIFACT }}
+      semantic-release-config-file: ${{ needs.variables.outputs.semantic-release-config-file }}
+      distribution-artifacts-name: ${{ needs.variables.outputs.distribution-artifacts-name }}
+      distribution-artifacts-dir: ${{ needs.variables.outputs.distribution-artifacts-dir }}
+      lock-file-artifact: ${{ needs.variables.outputs.lock-file-artifact }}
 
 
   test-e2e:
     name: End-to-End Test
-    needs: build
+    needs:
+      - variables
+      - build
     uses: ./.github/workflows/e2e-test.yml
     with:
       new-release-detected: ${{ needs.build.outputs.new-release-detected }}
-      distribution-artifacts-name: ${{ env.DISTRIBUTION_ARTIFACTS-NAME }}
-      distribution-artifacts-dir: ${{ env.DISTRIBUTION_ARTIFACTS-DIR }}
-      package-name: ${{ env.PACKAGE_NAME }}
-      distribution-file-incipit: ${{ env.DISTRIBUTION_FILE_INCIPIT }}
-      test-dependency-group: ${{ env.TEST_DEPENDENCY_GROUP }} 
-      run-test-command: ${{ env.RUN_TEST_COMMAND }}
+      distribution-artifacts-name: ${{ needs.variables.outputs.distribution-artifacts-name }}
+      distribution-artifacts-dir: ${{ needs.variables.outputs.distribution-artifacts-dir }}
+      package-name: ${{ needs.variables.outputs.package-name }}
+      distribution-file-incipit: ${{ needs.variables.outputs.distribution-file-incipit }}
+      test-dependency-group: ${{ needs.variables.outputs.test-dependency-group }}
+      run-test-command: ${{ needs.variables.outputs.run-test-command }}
 
 
   release:
@@ -57,10 +85,10 @@ jobs:
     uses: ./.github/workflows/release.yml
     with:
       new-release-detected: ${{ needs.build.outputs.new-release-detected }}
-      semantic-release-config-file: ${{ env.SEMANTIC_RELEASE_CONFIG_FILE }}
-      distribution-artifacts-name: ${{ env.DISTRIBUTION_ARTIFACTS_NAME }}
-      distribution-artifacts-dir: ${{ env.DISTRIBUTION_ARTIFACTS_DIR }}
-      lock-file-artifact: ${{ env.LOCK_FILE_ARTIFACT }}
+      semantic-release-config-file: ${{ needs.variables.outputs.semantic-release-config-file }}
+      distribution-artifacts-name: ${{ needs.variables.outputs.distribution-artifacts-name }}
+      distribution-artifacts-dir: ${{ needs.variables.outputs.distribution-artifacts-dir }}
+      lock-file-artifact: ${{ needs.variables.outputs.lock-file-artifact }}
     secrets: inherit
     permissions:
       contents: write
@@ -74,6 +102,6 @@ jobs:
     uses: ./.github/workflows/publish.yml
     with:
       new-version-released: ${{ needs.release.outputs.new-version-released }}
-      package-name: ${{ env.PACKAGE_NAME }}
-      distribution-artifacts-name: ${{ env.DISTRIBUTION_ARTIFACTS_NAME }}
-      distribution-artifacts-dir: ${{ env.DISTRIBUTION_ARTIFACTS_DIR }}
+      package-name: ${{ needs.variables.outputs.package-name }}
+      distribution-artifacts-name: ${{ needs.variables.outputs.distribution-artifacts-name }}
+      distribution-artifacts-dir: ${{ needs.variables.outputs.distribution-artifacts-dir }}
