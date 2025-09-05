@@ -106,4 +106,5 @@ jobs:
       distribution-artifacts-name: ${{ needs.variables.outputs.distribution-artifacts-name }}
       distribution-artifacts-dir: ${{ needs.variables.outputs.distribution-artifacts-dir }}
     permissions:
+      contents: read
       id-token: write
