@@ -2,6 +2,31 @@
 
 <!-- version list -->
 
+## v0.9.0 (2025-09-05)
+
+### Bug Fixes
+
+- **ci**: Add permissions to read content
+  ([`74bf7d8`](https://github.com/fleetingbytes/psr-demo/commit/74bf7d886af934b0dd10f2a6bc1c734ba70b826f))
+
+- **ci**: Add permissions to write id-token
+  ([`60112b0`](https://github.com/fleetingbytes/psr-demo/commit/60112b0ed3eb9222785507d15ba23adc29328009))
+
+- **ci**: Don't use UV_LOCKED for creating the release
+  ([`0061d81`](https://github.com/fleetingbytes/psr-demo/commit/0061d813f933bfc5bf4c04dd61bd6670e7b44a47))
+
+- **ci**: Remove dependency from reusable workflow
+  ([`94d24f8`](https://github.com/fleetingbytes/psr-demo/commit/94d24f8415917cb4cb07643084bd5232eca7bc15))
+
+- **ci**: Use a variables job to define variables for reusable workflows
+  ([`e6684d1`](https://github.com/fleetingbytes/psr-demo/commit/e6684d113666073a1a2a0a7798ed0f03eb268a77))
+
+### Features
+
+- **ci**: Reusable workflow for publish job
+  ([`d0a5372`](https://github.com/fleetingbytes/psr-demo/commit/d0a537298b88cfdcfe3d36f2a61711a2ca14c619))
+
+
 ## v0.8.3 (2025-09-04)
 
 ### Bug Fixes
