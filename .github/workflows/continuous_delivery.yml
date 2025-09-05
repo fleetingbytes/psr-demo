@@ -9,30 +9,27 @@ on:
 permissions:
   contents: read
 
+
 env:
   SEMANTIC_RELEASE_CONFIG_FILE: "./semantic-release.toml"
+  PACKAGE_NAME: "psr-demo"
+  DISTRIBUTION_FILE_INCIPIT: "psr_demo"
+  TEST_DEPENDENCY_GROUP: "test"
+  RUN_TEST_COMMAND: "uv run -- pytest --verbose"
+  DISTRIBUTION_ARTIFACTS_NAME: "dist"
+  DISTRIBUTION_ARTIFACTS_DIR: "dist"
+  LOCK_FILE_ARTIFACT: "uv.lock"
 
-
-jobs:
-  variables:
-    name: Set Workflow Variables
-    runs-on: ubuntu-latest
-    outputs:
-      semantic-release-config-file: ${{ steps.set-vars.outputs.semantic-release-config-file }}
-    steps:
-      - name: Set Variables
-        id: set-vars
-        run: echo "semantic-release-config-file=${SEMANTIC_RELEASE_CONFIG_FILE}" >> $GITHUB_OUTPUT
 
   build:
     name: Build
     needs: variables
     uses: ./.github/workflows/build.yml
     with:
-      semantic-release-config-file: ${{ needs.variables.outputs.semantic-release-config-file }}
-      distribution-artifacts-name: "dist"
-      distribution-artifacts-dir: "dist"
-      lock-file-artifact: "uv.lock"
+      semantic-release-config-file: ${{ env.SEMANTIC_RELEASE_CONFIG_FILE }}
+      distribution-artifacts-name: ${{ env.DISTRIBUTION_ARTIFACTS_NAME }}
+      distribution-artifacts-dir: ${{ env.DISTRIBUTION_ARTIFACTS_DIR }}
+      lock-file-artifact: ${{ env.LOCK_FILE_ARTIFACT }}
 
 
   test-e2e:
@@ -42,10 +39,10 @@ jobs:
       new-release-detected: ${{ needs.build.outputs.new-release-detected }}
       artifacts-name: ${{ needs.build.outputs.distribution-artifacts-name }}
       artifacts-dir: ${{ needs.build.outputs.distribution-artifacts-dir }}
-      package-name: "psr-demo"
-      distribution-file-incipit: "psr_demo"
-      test-dependency-group: "test"
-      run-test-command: "uv run -- pytest --verbose"
+      package-name: ${{ env.PACKAGE_NAME }}
+      distribution-file-incipit: ${{ env.DISTRIBUTION_FILE_INCIPIT }}
+      test-dependency-group: ${{ env.TEST_DEPENDENCY_GROUP }} 
+      run-test-command: ${{ env.RUN_TEST_COMMAND }}
 
 
   release:
@@ -65,67 +62,10 @@ jobs:
       contents: write
 
 
-  # 1. Separate out the deploy step from the publish step to run each step at
-  #    the least amount of token privilege
-  # 2. Also, deployments can fail, and it is better to have a separate job if you need to retry
-  #    and it won't require reversing the release.
-  deploy-test:
-    name: Publish on TestPyPI
-    needs: release
-    runs-on: ubuntu-latest
-    if: ${{ needs.release.outputs.new-version-released == 'true' }}
-
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/p/psr-demo
-
-    permissions:
-      contents: read
-      id-token: write
-
-    steps:
-      - name: Setup | Download Build Artifacts
-        uses: actions/download-artifact@v4
-        id: artifact-download
-        with:
-          name: ${{ needs.release.needs.build.outputs.distribution-artifacts-name }}
-          path: ${{ needs.release.needs.build.outputs.distribution-artifacts-dir }}
-
-      # see https://docs.pypi.org/trusted-publishers/
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: dist
-          print-hash: true
-          verbose: true
-          repository-url: https://test.pypi.org/legacy/
-
-  deploy:
-    name: Publish on PyPI
-    needs: release
-    runs-on: ubuntu-latest
-    if: ${{ needs.release.outputs.new-version-released == 'true' }}
-
-    environment:
-      name: pypi
-      url: https://pypi.org/p/psr-demo
-
-    permissions:
-      contents: read
-      id-token: write
-
-    steps:
-      - name: Setup | Download Build Artifacts
-        uses: actions/download-artifact@v4
-        id: artifact-download
-        with:
-          name: ${{ needs.release.needs.build.outputs.distribution-artifacts-name }}
-          path: ${{ needs.release.needs.build.outputs.distribution-artifacts-dir }}
-
-      # see https://docs.pypi.org/trusted-publishers/
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: dist
-          print-hash: true
-          verbose: true
+  publish:
+    needs:
+      - variables
+      - release
+    uses: ./.github/workflows/publish.yml
+    with:
+      package-name: ${{ needs.variables.outputs.package-name }}

@@ -1,0 +1,82 @@
+name: Publish
+
+on:
+  workflow_call:
+    inputs:
+      new-version-released:
+        required: true
+        type: string
+      distribution-artifacts-name:
+        required: true
+        type: string
+      distribution-artifacts-dir:
+        required: true
+        type: string
+      package-name:
+        required: true
+        type: string
+
+
+jobs:
+  publish-on-testpypi:
+    name: Publish on TestPyPI
+    needs: release
+    runs-on: ubuntu-latest
+
+    if: ${{ inputs.new-version-released == 'true' }}
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/${{ inputs.package-name }}
+
+    permissions:
+      contents: read  # check if this is redundant
+      id-token: write
+
+    steps:
+      - name: Setup | Download Build Artifacts
+        uses: actions/download-artifact@v4
+        id: artifact-download
+        with:
+          name: ${{ inputs.distribution-artifacts-name }}
+          path: ${{ inputs.distribution-artifacts-dir }}
+
+      - name: Publish package distributions to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
+          print-hash: true
+          verbose: true
+          repository-url: https://test.pypi.org/legacy/
+
+  publish-on-pypi:
+    name: Publish on PyPI
+    needs: release
+    runs-on: ubuntu-latest
+
+    if: ${{ inputs.new-version-released == 'true' }}
+
+    environment:
+      name: pypi
+      url: https://pypi.org/p/${{ inputs.package-name }}
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Setup | Download Build Artifacts
+        uses: actions/download-artifact@v4
+        id: artifact-download
+        with:
+          name: ${{ needs.release.needs.build.outputs.distribution-artifacts-name }}
+          path: ${{ needs.release.needs.build.outputs.distribution-artifacts-dir }}
+
+      # see https://docs.pypi.org/trusted-publishers/
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
+          print-hash: true
+          verbose: true
+
