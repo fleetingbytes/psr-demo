@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.9.1 (2025-09-05)
+
+### Bug Fixes
+
+- **ci**: Do not use reusable workflow for publishing
+  ([`5d0724d`](https://github.com/fleetingbytes/psr-demo/commit/5d0724d22a58df981c9e1d7c38fb059d977a07d2))
+
+
 ## v0.9.0 (2025-09-05)
 
 ### Bug Fixes
