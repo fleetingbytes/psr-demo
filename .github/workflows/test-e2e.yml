@@ -27,7 +27,7 @@ on:
 
 
 jobs:
-  e2e-test:
+  test-e2e:
     name: End-to-End Test
     runs-on: ubuntu-latest
     steps:

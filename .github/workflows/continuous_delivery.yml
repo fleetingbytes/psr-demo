@@ -23,8 +23,20 @@ env:
 
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout Repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+
+      - name: Lint
+        uses: astral-sh/ruff-action@57714a7c8a2e59f32539362ba31877a1957dded1  # v3.5.1
+
+
   variables:
     name: Variables
+    needs: lint
     runs-on: ubuntu-latest
     outputs:
       semantic-release-config-file: ${{ steps.set-variables.outputs.semantic-release-config-file }}
@@ -70,7 +82,7 @@ jobs:
     needs:
       - variables
       - build
-    uses: ./.github/workflows/e2e-test.yml
+    uses: ./.github/workflows/test-e2e.yml
     with:
       new-release-detected: ${{ needs.build.outputs.new-release-detected }}
       distribution-artifacts-name: ${{ needs.variables.outputs.distribution-artifacts-name }}
@@ -99,8 +111,7 @@ jobs:
       contents: write
 
 
-  # PyPI does not support publishing from reusable workflows yet
-  # Subscribe to:
+  # PyPI does not support publishing from reusable workflows yet. Subscribe to:
   #  https://github.com/pypi/warehouse/issues/11096
   #  https://github.com/pypa/gh-action-pypi-publish/issues/166
   publish:
@@ -115,7 +126,7 @@ jobs:
     name: Publish on ${{ matrix.publish-data.registry }}
     runs-on: ubuntu-latest
 
-    if: ${{ needs.release.outputs.new-version-released == 'true' }}
+    if: ${{ needs.release.outputs.new-version-released == "true" }}
 
     environment:
       name: ${{ matrix.publish-data.environment-name }}
