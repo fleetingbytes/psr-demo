@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v0.10.0 (2025-09-05)
+
+### Continuous Integration
+
+- Fix 'true'
+  ([`00df919`](https://github.com/fleetingbytes/psr-demo/commit/00df919afcee04eeecddf4726f4d866f2199ff52))
+
+### Features
+
+- **ci**: Cleanup and add lint stage
+  ([`0265503`](https://github.com/fleetingbytes/psr-demo/commit/02655033d2fade233b6af11eed7d284377385b2f))
+
+
 ## v0.9.1 (2025-09-05)
 
 ### Bug Fixes
