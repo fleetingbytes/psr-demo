@@ -105,3 +105,5 @@ jobs:
       package-name: ${{ needs.variables.outputs.package-name }}
       distribution-artifacts-name: ${{ needs.variables.outputs.distribution-artifacts-name }}
       distribution-artifacts-dir: ${{ needs.variables.outputs.distribution-artifacts-dir }}
+    permissions:
+      id-token: write
