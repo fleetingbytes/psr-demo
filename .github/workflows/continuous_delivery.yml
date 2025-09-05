@@ -126,7 +126,7 @@ jobs:
     name: Publish on ${{ matrix.publish-data.registry }}
     runs-on: ubuntu-latest
 
-    if: ${{ needs.release.outputs.new-version-released == "true" }}
+    if: ${{ needs.release.outputs.new-version-released == 'true' }}
 
     environment:
       name: ${{ matrix.publish-data.environment-name }}
