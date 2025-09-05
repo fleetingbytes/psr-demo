@@ -25,12 +25,6 @@ on:
         value: ${{ jobs.build.outputs.new-release-tag }}
       new-release-is-prerelease:
         value: ${{ jobs.build.outputs.new-release-is-prerelease }}
-      distribution-artifacts-name:
-        value: ${{ inputs.distribution-artifacts-name }}
-      distribution-artifacts-dir:
-        value: ${{ inputs.distribution-artifacts-dir }}
-      lock-file-artifact:
-        value: ${{ inputs.lock-file-artifact }}
 
 
 jobs:
