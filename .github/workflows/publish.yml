@@ -20,7 +20,6 @@ on:
 jobs:
   publish-on-testpypi:
     name: Publish on TestPyPI
-    needs: release
     runs-on: ubuntu-latest
 
     if: ${{ inputs.new-version-released == 'true' }}
@@ -52,7 +51,6 @@ jobs:
 
   publish-on-pypi:
     name: Publish on PyPI
-    needs: release
     runs-on: ubuntu-latest
 
     if: ${{ inputs.new-version-released == 'true' }}
