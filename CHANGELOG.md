@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v0.10.1 (2025-09-06)
+
+### Bug Fixes
+
+- **docs**: Stop development, update readme and project metadata
+  ([`2172c3f`](https://github.com/fleetingbytes/psr-demo/commit/2172c3f9297d3a30a7fdbfdc39798d27c114f7e4))
+
+### Documentation
+
+- Finalize readme
+  ([`31c7646`](https://github.com/fleetingbytes/psr-demo/commit/31c76461c585452651015a94685df04b2cc5ca48))
+
+
 ## v0.10.0 (2025-09-05)
 
 ### Continuous Integration
